@@ -28,11 +28,6 @@ namespace ToDoList.Models
         //描述
         [Display(Name = "描述")]
         public string Description { get; set; }
-
-        //優先權
-        [Display(Name = "優先權")]    
-        public string Priority { get; set; }
-
     }
 
     public class ToDoListDBContext : DbContext
