@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ToDoList.Models.ToDoListViewModels>
+
+@{
+    ViewBag.Title = "ToDoList";
+}
+
+<h2>代辦清單</h2>
+<br /><br />
+@using (Html.BeginForm("Index", "ToDoList", FormMethod.Get))
+{
+    <p>
+        關鍵字:@Html.TextBox("keyWord")
+        <input type="submit" value="搜尋" />
+    </p>
+}
+<p style="float: right;">
+    @Html.ActionLink("新增", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+
+    @if (Model.Count() != 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("詳細資料", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("刪除", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    }
+    else {
+        <tr><td colspan="4" style="text-align: center;">查無資料</td></tr>
+    }
+
+</table>
